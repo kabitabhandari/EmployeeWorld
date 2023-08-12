@@ -32,6 +32,13 @@ public class Controller {
         return employeeService.fetchEmployeeList();
     }
 
+    // Read operation
+    @GetMapping("/employees-and-phones")
+    public List<Employee> fetchEmployeeAndPhoneList()
+    {
+        return employeeService.fetchEmployeeAndPhoneList();
+    }
+
     // Update operation
     @PutMapping("/employees/{id}")
     public Employee

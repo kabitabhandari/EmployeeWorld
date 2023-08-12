@@ -12,6 +12,9 @@ public interface EmployeeService {
     // Read operation
     List<Employee> fetchEmployeeList();
 
+    // Read operation
+    List<Employee> fetchEmployeeAndPhoneList();
+
     // Update operation
     Employee updateEmployee(Employee department, String employeeId);
 

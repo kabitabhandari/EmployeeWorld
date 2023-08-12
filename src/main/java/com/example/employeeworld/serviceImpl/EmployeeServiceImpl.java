@@ -1,20 +1,26 @@
 package com.example.employeeworld.serviceImpl;
 
 import com.example.employeeworld.model.Employee;
+import com.example.employeeworld.model.Phone;
 import com.example.employeeworld.repository.EmployeeRepository;
+import com.example.employeeworld.repository.PhoneRepository;
 import com.example.employeeworld.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
+    private final PhoneRepository phoneRepository;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, PhoneRepository phoneRepository) {
         this.employeeRepository = employeeRepository;
+        this.phoneRepository = phoneRepository;
     }
 
 
@@ -26,6 +32,35 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> fetchEmployeeList() {
         return (List<Employee>) employeeRepository.findAll();
+    }
+
+    @Override
+    public List<Employee> fetchEmployeeAndPhoneList() {
+        List<Employee> employeesList = (List<Employee>) employeeRepository.findAll();
+        List<Phone> phonesList = (List<Phone>) phoneRepository.findAll();
+
+        // creating our merged list
+        List<Employee> mergedList = new ArrayList<>();
+
+        List<Phone> phoneL = new ArrayList<>();
+        Phone phone = new Phone();
+        for (Phone p : phonesList) {
+            phone.setHomephone(p.getHomephone());
+            phone.setPhoneid(p.getOfficephone());
+        }
+        phoneL.add(phone);
+
+        Employee employee = new Employee();
+        for (Employee e : employeesList) {
+            employee.setName(e.getName());
+            employee.setEmployeeid(e.getEmployeeid());
+            employee.setAge(e.getAge());
+            employee.setSalary(e.getSalary());
+            employee.setJobtitle(e.getJobtitle());
+            employee.setPhone(phoneL);
+            mergedList.add(employee);
+        }
+        return mergedList;
     }
 
     @Override
