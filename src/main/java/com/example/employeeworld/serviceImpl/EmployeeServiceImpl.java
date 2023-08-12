@@ -1,6 +1,6 @@
 package com.example.employeeworld.serviceImpl;
 
-import com.example.employeeworld.Employee;
+import com.example.employeeworld.model.Employee;
 import com.example.employeeworld.repository.EmployeeRepository;
 import com.example.employeeworld.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;

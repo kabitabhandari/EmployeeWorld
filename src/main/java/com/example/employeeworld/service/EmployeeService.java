@@ -1,9 +1,8 @@
 package com.example.employeeworld.service;
 
-import com.example.employeeworld.Employee;
+import com.example.employeeworld.model.Employee;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface EmployeeService {
 

@@ -1,6 +1,6 @@
 package com.example.employeeworld.repository;
 
-import com.example.employeeworld.Employee;
+import com.example.employeeworld.model.Employee;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
