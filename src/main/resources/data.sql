@@ -21,7 +21,3 @@ INSERT INTO employee (employeeid, name, age, jobtitle, salary ) VALUES ('uhy7867
 INSERT INTO employee (employeeid, name, age, jobtitle, salary ) VALUES ('kj90jhnb-e740-4ece-88e7-2589073a21a8','Dwayne', 37, 'dot net developer', 523000);
 INSERT INTO employee (employeeid, name, age, jobtitle, salary ) VALUES ('mj9876gf-e740-4ece-88e7-2589073a21a8','Rima', 27, 'python developer', 523000);
 INSERT INTO employee (employeeid, name, age, jobtitle, salary ) VALUES ('mn789ujh-e740-4ece-88e7-2589073a21a8','Monica', 47, 'react developer', 523000);
-
-INSERT INTO phone (phoneid, officephone, homephone) VALUES ('123sd34', '972-972-9702', '890-987-6511');
-INSERT INTO phone (phoneid, officephone, homephone) VALUES ('45tg76', '908-908-6545', '788-987-6675');
-INSERT INTO phone (phoneid, officephone, homephone) VALUES ('76gh76', '678-123-9643', '789-987-1655');

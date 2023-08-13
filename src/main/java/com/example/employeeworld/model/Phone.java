@@ -10,19 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.math.BigInteger;
-
-@Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Phone {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @UuidGenerator
-    private String phoneid;
     private String homephone;
     private String officephone;
-
 }

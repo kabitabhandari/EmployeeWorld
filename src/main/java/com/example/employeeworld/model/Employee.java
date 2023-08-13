@@ -23,6 +23,4 @@ public class Employee {
     private Integer age;
     private String jobtitle;
     private double salary;
-    @OneToMany
-    private List<Phone> phone;
 }

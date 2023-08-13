@@ -1,6 +1,8 @@
 package com.example.employeeworld.service;
 
 import com.example.employeeworld.model.Employee;
+import com.example.employeeworld.model.ResponseEmployee;
+import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ public interface EmployeeService {
     List<Employee> fetchEmployeeList();
 
     // Read operation
-    List<Employee> fetchEmployeeAndPhoneList();
+    List<ResponseEmployee> fetchEmployeeAndPhoneList();
 
     // Update operation
     Employee updateEmployee(Employee department, String employeeId);

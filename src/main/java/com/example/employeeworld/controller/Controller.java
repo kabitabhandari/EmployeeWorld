@@ -1,6 +1,7 @@
 package com.example.employeeworld.controller;
 
 import com.example.employeeworld.model.Employee;
+import com.example.employeeworld.model.ResponseEmployee;
 import com.example.employeeworld.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class Controller {
 
     // Read operation
     @GetMapping("/all-employees")
-    public List<Employee> fetchEmployeeAndPhoneList()
+    public List<ResponseEmployee> fetchEmployeeAndPhoneList()
     {
         return employeeService.fetchEmployeeAndPhoneList();
     }
