@@ -25,7 +25,7 @@ public class Controller {
         return employeeService.saveEmployee(Employee);
     }
 
-    // Read operation
+//    // Read operation
     @GetMapping("/employees")
     public List<Employee> fetchEmployeeList()
     {
@@ -33,7 +33,7 @@ public class Controller {
     }
 
     // Read operation
-    @GetMapping("/employees-and-phones")
+    @GetMapping("/all-employees")
     public List<Employee> fetchEmployeeAndPhoneList()
     {
         return employeeService.fetchEmployeeAndPhoneList();

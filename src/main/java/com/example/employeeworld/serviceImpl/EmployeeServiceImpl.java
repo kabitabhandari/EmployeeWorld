@@ -50,8 +50,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         phoneL.add(phone);
 
-        Employee employee = new Employee();
+
         for (Employee e : employeesList) {
+            Employee employee = new Employee();
             employee.setName(e.getName());
             employee.setEmployeeid(e.getEmployeeid());
             employee.setAge(e.getAge());
