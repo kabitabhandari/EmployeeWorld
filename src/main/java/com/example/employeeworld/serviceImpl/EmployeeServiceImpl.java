@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -39,11 +40,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         // creating our merged list
         List<ResponseEmployee> mergedList = new ArrayList<>();
 
-            Phone phone = new Phone();
-            phone.setHomephone("234-897-9898");
-            phone.setOfficephone("234-897-9898");
-
-
         for (Employee e : employeesList) {
             ResponseEmployee employee = new ResponseEmployee();
             employee.setName(e.getName());
@@ -51,6 +47,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setAge(e.getAge());
             employee.setSalary(e.getSalary());
             employee.setJobtitle(e.getJobtitle());
+            Phone phone = new Phone();
+            phone.setHomephone(randomPhone());
+            phone.setOfficephone(randomPhone());
             employee.setPhone(phone);
             mergedList.add(employee);
         }
@@ -75,5 +74,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteEmployeeById(String employeeId) {
         employeeRepository.deleteById(employeeId);
 
+    }
+
+    /**
+     * Generates random phone number
+     *
+     * @return String
+     */
+    private String randomPhone() {
+        Random number = new Random();
+        Integer num = number.nextInt(100000);
+        return num.toString() + num.toString();
     }
 }
