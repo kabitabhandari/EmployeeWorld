@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.util.List;
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,6 +17,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @UuidGenerator
     private String employeeid;
+
     private String name;
     private Integer age;
     private String jobtitle;

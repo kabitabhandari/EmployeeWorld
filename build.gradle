@@ -1,4 +1,5 @@
 plugins {
+	id 'com.diffplug.spotless' version "6.19.0"
 	id 'java'
 	id 'org.springframework.boot' version '3.1.2'
 	id 'io.spring.dependency-management' version '1.1.2'
@@ -22,15 +23,34 @@ repositories {
 }
 
 dependencies {
+	//Springboot Dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	//lombok
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	//h2
+	runtimeOnly 'com.h2database:h2'
+
+	//springtest
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+spotless{
+	java {
+		importOrder()
+		removeUnusedImports()
+		trimTrailingWhitespace()
+		endWithNewline()
+		googleJavaFormat('1.17.0').aosp().reflowLongStrings()
+	}
+	spotlessCheck.dependsOn(spotlessApply)
 }
