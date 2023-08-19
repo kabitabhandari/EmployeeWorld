@@ -34,9 +34,7 @@ public class Controller {
     @GetMapping(
             value = "/all-employees",
             produces = {MediaType.APPLICATION_JSON_VALUE}, // This api will produce json output
-            consumes = {
-                MediaType.APPLICATION_JSON_VALUE
-            }) // This api will accept/consume json input)
+            consumes = {MediaType.APPLICATION_JSON_VALUE}) // This api will accept/consume json input)
     public List<ResponseEmployee> fetchEmployeeAndPhoneList() {
         return employeeService.fetchEmployeeAndPhoneList();
     }
