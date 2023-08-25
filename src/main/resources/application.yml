@@ -3,14 +3,31 @@ spring:
     user:
       name: postman
       password: password
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password: pass
+#    driverClassName: org.h2.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    defer-datasource-initialization: true
+
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: pass
-    driverClassName: org.h2.Driver
+    url: jdbc:postgresql://localhost:5432/kbi_jwt_users
+    username: postgres
+    password: password!
+    driverClassName: org.postgresql.Driver
+
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: 'create-drop'
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
 
   h2:
     console:
@@ -28,3 +45,9 @@ logging:
 
 server:
   port: 8081
+
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
