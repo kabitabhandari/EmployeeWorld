@@ -18,10 +18,9 @@ import java.util.function.Function;
 public class JWTService {
 
 
-
     private static final String secretKey = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
 
-    private final long refreshExpiration = 86400000 ;
+    private final long expiration = 86400000; //valid for a day
 
     public String extractUsername(String jwtToken) {
         return null;
@@ -36,16 +35,18 @@ public class JWTService {
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails); //generate token only from user details
     }
+
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) { //generate token  from extraClaims, user details
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000*60*24)) //token valid till next 24 hrs plus 1000ms
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
@@ -68,26 +69,9 @@ public class JWTService {
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
+
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
-    public String generateRefreshToken(
-            UserDetails userDetails
-    ) {
-        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
-    }
-    private String buildToken(
-            Map<String, Object> extraClaims,
-            UserDetails userDetails,
-            long expiration
-    ) {
-        return Jwts
-                .builder()
-                .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-                .compact();
-    }
+
 }
