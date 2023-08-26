@@ -23,7 +23,7 @@ public class JWTService {
     private final long expiration = 86400000; //valid for a day
 
     public String extractUsername(String jwtToken) {
-        return null;
+        return extractClaim(jwtToken, Claims::getSubject);
 
     }
 
