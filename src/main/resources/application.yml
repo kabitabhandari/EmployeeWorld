@@ -13,7 +13,7 @@ spring:
 #    defer-datasource-initialization: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/kbi_jwt_users
+    url: jdbc:postgresql://localhost:5432/jwt_database
     username: postgres
     password: password!
     driverClassName: org.postgresql.Driver
