@@ -1,19 +1,6 @@
 spring:
-  security:
-    user:
-      name: postman
-      password: password
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    username: sa
-#    password: pass
-#    driverClassName: org.h2.Driver
-#  jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
-#    defer-datasource-initialization: true
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/jwt_database
+    url: jdbc:postgresql://localhost:5432/ownerDB
     username: postgres
     password: password!
     driverClassName: org.postgresql.Driver
@@ -27,12 +14,16 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    # By default, data.sql scripts get executed before the Hibernate is initialized.
+    # We need Hibernate to create our tables before inserting the data into them.
+    #T o achieve this, we need to defer the initialization of our data source
+    defer-datasource-initialization: true
 
-
-  h2:
-    console:
-      enabled: true
-      path: /h2
+  # Please note that for any script-based initialization, i.e. inserting data via data.sql or
+  # creating schema via schema.sql (which we'll learn next), we need to set the below property:
+  sql:
+    init:
+      mode: always
 
 
 logging:
