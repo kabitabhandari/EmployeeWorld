@@ -57,6 +57,9 @@ class EmployeeServiceImplTest {
 
     @Test
     void fetchEmployeeAndPhoneList() {
+        when(mockedUserRepository.findAll()).thenReturn(employeeListMocked());
+        service.fetchEmployeeAndPhoneList();
+        service.fetchEmployeeList();
     }
 
     @Test
