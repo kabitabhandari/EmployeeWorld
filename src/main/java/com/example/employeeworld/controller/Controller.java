@@ -24,7 +24,7 @@ public class Controller {
         return employeeService.saveEmployee(Employee);
     }
 
-    //    // Read operation
+    // Read operation
     @GetMapping("/employees")
     public List<Employee> fetchEmployeeList() {
         return employeeService.fetchEmployeeList();
