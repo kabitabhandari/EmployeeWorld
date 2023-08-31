@@ -5,5 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends CrudRepository<Employee, String> { // class type and primary-key type
+public interface EmployeeRepository
+        extends CrudRepository<Employee, String> { // class type and primary-key type
 }

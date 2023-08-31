@@ -1,6 +1,5 @@
 package com.example.employeeworld.jwtsecurity.jwtmodel;
 
-import com.example.employeeworld.jwtsecurity.jwtmodel.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@RequestMapping("/pi/v1")
-//@Hidden
+// @RequestMapping("/pi/v1")
+// @Hidden
 public class DemoController {
 
     @GetMapping("/demo")

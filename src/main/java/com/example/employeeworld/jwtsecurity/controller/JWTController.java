@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/jwt")
 @RequiredArgsConstructor
-//Generates a constructor for final fields.
+// Generates a constructor for final fields.
 public class JWTController {
     private final AuthenticationService service;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+    public ResponseEntity<AuthenticationResponse> authenticate(
+            @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(service.authenticate(request));
     }
 

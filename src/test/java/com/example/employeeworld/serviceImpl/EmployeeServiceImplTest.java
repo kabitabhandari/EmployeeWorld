@@ -1,24 +1,24 @@
-package com.example.employeeworld.serviceImpl;
+ package com.example.employeeworld.serviceImpl;
 
-import com.example.employeeworld.model.Employee;
-import com.example.employeeworld.repository.EmployeeRepository;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+ import com.example.employeeworld.model.Employee;
+ import com.example.employeeworld.repository.EmployeeRepository;
+ import org.junit.jupiter.api.Assertions;
+ import org.junit.jupiter.api.Test;
+ import org.junit.jupiter.api.extension.ExtendWith;
+ import org.mockito.InjectMocks;
+ import org.mockito.Mock;
+ import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.willDoNothing;
-import static org.mockito.Mockito.*;
+ import static org.mockito.ArgumentMatchers.any;
+ import static org.mockito.BDDMockito.willDoNothing;
+ import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-class EmployeeServiceImplTest {
+ @ExtendWith(MockitoExtension.class)
+ class EmployeeServiceImplTest {
 
     @Mock
     private EmployeeRepository mockedUserRepository;
@@ -28,7 +28,8 @@ class EmployeeServiceImplTest {
 
     @Test
     void saveEmployeeShouldReturnEmployeeUsingAssertApproach() {
-        when(mockedUserRepository.save(any())).thenReturn(new Employee("1","rammy",22,"student", 1200));
+        when(mockedUserRepository.save(any())).thenReturn(new Employee("1","rammy",22,"student",
+ 1200));
         Employee result = service.saveEmployee(new Employee("1","rammy",22,"student", 1200));
         //assertion statement
         Assertions.assertEquals("rammy",result.getName());
@@ -64,8 +65,10 @@ class EmployeeServiceImplTest {
 
     @Test
     void updateEmployee() {
-        when(mockedUserRepository.findById(anyString())).thenReturn(Optional.of(new Employee("1", "rammy", 22, "student", 1200.00)));
-        Employee result = service.updateEmployee(new Employee("1", "rammy", 22, "Doctor", 120000.00), "1");
+        when(mockedUserRepository.findById(anyString())).thenReturn(Optional.of(new Employee("1",
+ "rammy", 22, "student", 1200.00)));
+        Employee result = service.updateEmployee(new Employee("1", "rammy", 22, "Doctor",
+ 120000.00), "1");
         Assertions.assertEquals("Doctor", result.getJobtitle());
         Assertions.assertEquals(120000.00, result.getSalary());
     }
@@ -90,4 +93,4 @@ class EmployeeServiceImplTest {
         employeeList.add(employee);
         return employeeList;
     }
-}
+ }

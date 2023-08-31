@@ -5,26 +5,24 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 @Service
 public class JWTService {
 
+    private static final String secretKey =
+            "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
 
-    private static final String secretKey = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
-
-    private final long expiration = 86400000; //valid for a day
+    private final long expiration = 86400000; // valid for a day
 
     public String extractUsername(String jwtToken) {
         return extractClaim(jwtToken, Claims::getSubject);
-
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -33,12 +31,13 @@ public class JWTService {
     }
 
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails); //generate token only from user details
+        return generateToken(new HashMap<>(), userDetails); // generate token only from user details
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) { //generate token  from extraClaims, user details
-        return Jwts
-                .builder()
+    public String generateToken(
+            Map<String, Object> extraClaims,
+            UserDetails userDetails) { // generate token  from extraClaims, user details
+        return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
@@ -48,8 +47,7 @@ public class JWTService {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts
-                .parserBuilder()
+        return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
                 .parseClaimsJws(token)
@@ -73,5 +71,4 @@ public class JWTService {
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
-
 }

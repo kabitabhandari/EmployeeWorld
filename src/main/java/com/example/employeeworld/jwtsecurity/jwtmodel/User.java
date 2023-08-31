@@ -1,6 +1,8 @@
 package com.example.employeeworld.jwtsecurity.jwtmodel;
 
 import jakarta.persistence.*;
+import java.util.Collection;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +11,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,13 +18,12 @@ import java.util.List;
 @Entity
 @Table(name = "kbi_users_table_for_jwt")
 public class User implements UserDetails {
-    @Id
-    @GeneratedValue
-    private Integer id;
+    @Id @GeneratedValue private Integer id;
     private String firstname;
     private String lastname;
     private String email;
     private String secret;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

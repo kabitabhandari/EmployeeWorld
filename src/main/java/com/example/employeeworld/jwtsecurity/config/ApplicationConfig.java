@@ -1,6 +1,7 @@
 package com.example.employeeworld.jwtsecurity.config;
 
 import com.example.employeeworld.jwtsecurity.repository.JWTUserRepository;
+import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +16,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.function.Supplier;
-
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
@@ -27,10 +26,14 @@ public class ApplicationConfig {
         return new UserDetailsService() {
             @SneakyThrows
             @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            public UserDetails loadUserByUsername(String username)
+                    throws UsernameNotFoundException {
 
-                return jwtUserRepository.findByEmail(username)
-                        .orElseThrow((Supplier<Throwable>) () -> new UsernameNotFoundException("[[User not found]]"));
+                return jwtUserRepository
+                        .findByEmail(username)
+                        .orElseThrow(
+                                (Supplier<Throwable>)
+                                        () -> new UsernameNotFoundException("[[User not found]]"));
             }
         };
     }
@@ -44,7 +47,8 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+            throws Exception {
         return config.getAuthenticationManager();
     }
 
